@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const NAME = 'ASHHAR SHAHAN';
+const NAME = 'ASHHAR SHAHAN PK';
 
 type Phase = 'loading' | 'zoom' | 'done';
 
