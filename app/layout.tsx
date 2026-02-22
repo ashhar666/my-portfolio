@@ -29,11 +29,11 @@ export const metadata: Metadata = {
   keywords: ["Ashhar Shahan", "Full Stack Developer", "Python Developer", "React Developer", "Next.js Portfolio", "Software Engineer"],
   authors: [{ name: "Ashhar Shahan" }],
   creator: "Ashhar Shahan",
-  metadataBase: new URL("https://ashhar-portfolio.vercel.app"),
+  metadataBase: new URL("https://ashharshahan.vercel.app"),
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://ashhar-portfolio.vercel.app",
+    url: "https://ashharshahan.vercel.app",
     title: "Ashhar Shahan | Python Full-Stack Developer",
     description: "Explore the portfolio of Ashhar Shahan, featuring modern web applications and high-performance backend systems.",
     siteName: "Ashhar Shahan Portfolio",
