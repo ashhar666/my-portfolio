@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { CursorFollower } from "@/components/ui/cursor-follower";
 import { GrainOverlay } from "@/components/ui/grain-overlay";
 import { ScrollToTop } from "@/components/ui/scroll-to-top";
+import { Analytics } from "@vercel/analytics/react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -80,6 +81,7 @@ export default function RootLayout({
           <GrainOverlay />
           <ScrollToTop />
           {children}
+          <Analytics />
         </ThemeProvider>
       </body>
     </html>
