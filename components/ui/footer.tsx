@@ -17,8 +17,8 @@ const Footer = () => {
 
     const connectLinks = [
         { icon: FiGithub, href: 'https://github.com/ashhar666', label: 'GitHub' },
-        { icon: FiLinkedin, href: 'https://www.linkedin.com/feed/', label: 'LinkedIn' },
-        { icon: FiTwitter, href: 'https://twitter.com/ashharshahan', label: 'Twitter' },
+        { icon: FiLinkedin, href: 'https://linkedin.com/in/ashharshahan', label: 'LinkedIn' },
+        { icon: FiTwitter, href: 'https://x.com/ashharshahan', label: 'Twitter' },
         { icon: FiMail, href: 'mailto:ashharshahan666@gmail.com', label: 'Email' },
     ];
 

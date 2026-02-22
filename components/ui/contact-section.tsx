@@ -80,8 +80,14 @@ const ContactSection = () => {
         {
             icon: FiGithub,
             label: 'GitHub',
+            value: '@ashhar666',
+            href: 'https://github.com/ashhar666'
+        },
+        {
+            icon: FiTwitter,
+            label: 'Twitter',
             value: '@ashharshahan',
-            href: 'https://github.com/ashharshahan'
+            href: 'https://x.com/ashharshahan'
         }
     ];
 
