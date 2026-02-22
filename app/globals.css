@@ -1,8 +1,57 @@
 @import "tailwindcss";
 
-:root {
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 2rem;
+  /* Offset for sticky headers/spacing */
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--foreground);
+  opacity: 0.2;
+  border-radius: 5px;
+  border: 2px solid var(--background);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--foreground);
+  opacity: 0.5;
+}
+
+/* Hide default cursor — custom cursor follower takes over on desktop */
+@media (pointer: fine) {
+
+  html,
+  body,
+  * {
+    cursor: none !important;
+  }
+}
+
+
+html.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+}
+
+html.light {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #0a0a0a;
+}
+
+/* Default to dark theme */
+html {
+  --background: #0a0a0a;
+  --foreground: #ededed;
 }
 
 @theme inline {
@@ -10,17 +59,76 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-serif: var(--font-playfair);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Section backgrounds that adapt to theme */
+section {
+  background: var(--background);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ── Grain overlay — CSS-animated, zero JS per frame ── */
+@keyframes grain {
+
+  0%,
+  100% {
+    background-position: 0 0;
+  }
+
+  10% {
+    background-position: -5% -10%;
+  }
+
+  20% {
+    background-position: -15% 5%;
+  }
+
+  30% {
+    background-position: 7% -25%;
+  }
+
+  40% {
+    background-position: -5% 25%;
+  }
+
+  50% {
+    background-position: -15% 10%;
+  }
+
+  60% {
+    background-position: 15% 0%;
+  }
+
+  70% {
+    background-position: 0% 15%;
+  }
+
+  80% {
+    background-position: 3% 35%;
+  }
+
+  90% {
+    background-position: -10% 10%;
+  }
+}
+
+.grain-overlay {
+  animation: grain 8s steps(10, end) infinite;
+  will-change: background-position;
+}
+
+/* GPU promotion for perf-critical layers */
+.particles-canvas,
+.cursor-dot,
+.cursor-ring {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
 }
