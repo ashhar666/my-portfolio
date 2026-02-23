@@ -2,7 +2,8 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiMail, FiLinkedin, FiGithub, FiSend, FiCheckCircle, FiAlertCircle, FiLoader } from 'react-icons/fi';
+import { FiMail, FiLinkedin, FiGithub, FiCheckCircle, FiAlertCircle, FiTwitter } from 'react-icons/fi';
+import { InteractiveHoverButton } from '@/components/ui/interactive-hover-button';
 import emailjs from '@emailjs/browser';
 
 const SERVICE_ID = 'service_lm7ft8q';
@@ -255,26 +256,12 @@ const ContactSection = () => {
                                 viewport={{ once: true }}
                                 className="flex flex-col gap-3"
                             >
-                                <motion.button
+                                <InteractiveHoverButton
                                     type="submit"
                                     disabled={status === 'loading' || status === 'success'}
-                                    whileHover={{ scale: 1.03 }}
-                                    whileTap={{ scale: 0.97 }}
-                                    className="group inline-flex w-fit items-center gap-2 rounded-lg border border-foreground/20 bg-foreground/10 px-6 py-3 text-sm font-medium text-foreground transition-all hover:border-foreground/30 hover:bg-foreground/20 disabled:cursor-not-allowed disabled:opacity-60"
-                                >
-                                    {status === 'loading' ? (
-                                        <>
-                                            <FiLoader className="h-4 w-4 animate-spin" />
-                                            <span>Sending...</span>
-                                        </>
-                                    ) : (
-                                        <>
-                                            <span className="relative z-10">Send Message</span>
-                                            <FiSend className="relative z-10 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                                            <div className="absolute inset-0 -z-10 bg-gradient-to-r from-blue-600 to-purple-600 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-                                        </>
-                                    )}
-                                </motion.button>
+                                    text={status === 'loading' ? 'Sending...' : 'Send Message'}
+                                    className="w-44"
+                                />
 
                                 {/* Feedback Message */}
                                 <AnimatePresence>
