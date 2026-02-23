@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { HandWrittenTitle } from "@/components/ui/hand-writing-text";
 
 const NAME = 'ASHHAR SHAHAN PK';
 
@@ -14,7 +15,7 @@ export const PageLoader = ({ onComplete }: { onComplete: () => void }) => {
     // Loading Progress
     useEffect(() => {
         let startTime: number;
-        const duration = 2500;
+        const duration = 3500; // Longer to appreciate the hand-writing
 
         const animate = (time: number) => {
             if (!startTime) startTime = time;
@@ -46,35 +47,19 @@ export const PageLoader = ({ onComplete }: { onComplete: () => void }) => {
 
     if (phase === 'done') return null;
 
-    const characters = NAME.split("");
-
     return (
-        <div className="fixed inset-0 z-[9999] overflow-hidden bg-black flex flex-col items-center justify-center font-sans tracking-tighter">
+        <div className="fixed inset-0 z-[9999] overflow-hidden bg-[#050505] flex items-center justify-center font-sans tracking-tighter text-white">
 
             {/* Top Reveal Panel */}
             <motion.div
                 initial={{ y: 0 }}
                 animate={phase === 'zoom' ? { y: '-100%' } : { y: 0 }}
                 transition={{ duration: 1, ease: [0.87, 0, 0.13, 1] }}
-                className="absolute inset-0 z-50 bg-[#0a0a0a] flex items-end justify-center overflow-hidden"
-                style={{ height: '50.5%' }}
+                className="absolute inset-x-0 top-0 z-50 bg-[#050505] overflow-hidden flex items-end justify-center"
+                style={{ height: '50.1%' }}
             >
-                <div className="mb-[-1.25em] flex">
-                    {characters.map((char, i) => (
-                        <motion.span
-                            key={i}
-                            initial={{ y: "100%", opacity: 0 }}
-                            animate={{ y: 0, opacity: 1 }}
-                            transition={{
-                                duration: 1,
-                                delay: i * 0.03,
-                                ease: [0.22, 1, 0.36, 1]
-                            }}
-                            className="text-[clamp(1.5rem,8vw,5rem)] font-black text-white px-[0.02em] whitespace-pre"
-                        >
-                            {char}
-                        </motion.span>
-                    ))}
+                <div className="mb-[-5.5rem] md:mb-[-10.5rem] pointer-events-none opacity-20">
+                    <HandWrittenTitle title={NAME} subtitle="Portfolio v0.1" />
                 </div>
             </motion.div>
 
@@ -83,46 +68,30 @@ export const PageLoader = ({ onComplete }: { onComplete: () => void }) => {
                 initial={{ y: 0 }}
                 animate={phase === 'zoom' ? { y: '100%' } : { y: 0 }}
                 transition={{ duration: 1, ease: [0.87, 0, 0.13, 1] }}
-                className="absolute bottom-0 inset-x-0 z-50 bg-[#0a0a0a] flex items-start justify-center overflow-hidden"
+                className="absolute inset-x-0 bottom-0 z-50 bg-[#050505] overflow-hidden flex items-start justify-center"
                 style={{ height: '50%' }}
             >
-                <div className="mt-[-1.25em] flex">
-                    {characters.map((char, i) => (
-                        <motion.span
-                            key={i}
-                            initial={{ y: "-100%", opacity: 0 }}
-                            animate={{ y: 0, opacity: 1 }}
-                            transition={{
-                                duration: 1,
-                                delay: i * 0.03,
-                                ease: [0.22, 1, 0.36, 1]
-                            }}
-                            className="text-[clamp(1.5rem,8vw,5rem)] font-black text-white px-[0.02em] whitespace-pre"
-                        >
-                            {char}
-                        </motion.span>
-                    ))}
+                <div className="mt-[-5.5rem] md:mt-[-10.5rem] pointer-events-none opacity-20">
+                    <HandWrittenTitle title={NAME} subtitle="Portfolio v0.1" />
                 </div>
             </motion.div>
 
-            {/* Center Line and Counter */}
+            {/* Main Content (Centered) */}
             <motion.div
-                className="relative z-[60] flex flex-col items-center"
-                animate={phase === 'zoom' ? { opacity: 0, scale: 1.1 } : { opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5 }}
+                className="relative z-[60] w-full"
+                animate={phase === 'zoom' ? { opacity: 0, scale: 0.95 } : { opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             >
-                <div className="text-sm font-mono text-white/40 mb-2 uppercase tracking-[0.5em]">
-                    Initialising
-                </div>
-                <div className="text-xl font-light text-white/20 tabular-nums">
-                    {Math.round(progress)}%
-                </div>
+                <HandWrittenTitle
+                    title={NAME}
+                    subtitle="Portfolio v0.1"
+                />
             </motion.div>
 
             {/* Global Progress Bar (Bottom) */}
             <motion.div
-                className="fixed bottom-0 left-0 h-[2px] bg-white/20 z-[70]"
-                style={{ width: `${progress}%` }}
+                className="fixed bottom-0 left-0 h-[1px] bg-white/10 z-[70] origin-left"
+                style={{ scaleX: progress / 100 }}
                 animate={phase === 'zoom' ? { opacity: 0 } : { opacity: 1 }}
             />
 
