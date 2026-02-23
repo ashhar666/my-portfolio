@@ -14,21 +14,21 @@ export const PageLoader = ({ onComplete }: { onComplete: () => void }) => {
     // Loading Progress
     useEffect(() => {
         let startTime: number;
-        const duration = 2800; // Slightly longer for the liquid fill appreciation
+        const duration = 2000; // Faster, cleaner loading time
 
         const animate = (time: number) => {
             if (!startTime) startTime = time;
             const elapsed = time - startTime;
             const p = Math.min(elapsed / duration, 1);
 
-            // Smoother curve for progress
+            // Power-4 easing for a premium feel
             const easedP = p === 1 ? 1 : 1 - Math.pow(1 - p, 4);
             setProgress(easedP * 100);
 
             if (p < 1) {
                 requestAnimationFrame(animate);
             } else {
-                setTimeout(() => setPhase('zoom'), 600);
+                setTimeout(() => setPhase('zoom'), 400);
             }
         };
 
@@ -40,7 +40,7 @@ export const PageLoader = ({ onComplete }: { onComplete: () => void }) => {
             const t = setTimeout(() => {
                 setPhase('done');
                 onComplete();
-            }, 1000);
+            }, 800);
             return () => clearTimeout(t);
         }
     }, [phase, onComplete]);
@@ -50,90 +50,56 @@ export const PageLoader = ({ onComplete }: { onComplete: () => void }) => {
     return (
         <div className="fixed inset-0 z-[9999] overflow-hidden bg-[#050505] flex items-center justify-center">
 
-            {/* SVG Layer for Masking */}
-            <svg width="100%" height="100%" className="absolute inset-0 z-10 p-8 md:p-24 overflow-visible">
-                <defs>
-                    <mask id="textMask">
-                        <text
-                            x="50%"
-                            y="50%"
-                            textAnchor="middle"
-                            dominantBaseline="middle"
-                            className="text-[clamp(2.5rem,10vw,8rem)] font-black tracking-tighter fill-white uppercase"
-                        >
-                            {NAME}
-                        </text>
-                    </mask>
-                </defs>
-
-                {/* Background Shadow/Outline Layer (Inactive) */}
-                <text
-                    x="50%"
-                    y="50%"
-                    textAnchor="middle"
-                    dominantBaseline="middle"
-                    className="text-[clamp(2.5rem,10vw,8rem)] font-black tracking-tighter fill-none stroke-white/5 uppercase"
-                    strokeWidth="1"
+            <div className="relative flex flex-col items-center gap-8 w-full max-w-md px-12">
+                {/* Center Percentage */}
+                <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                    className="flex flex-col items-center"
                 >
-                    {NAME}
-                </text>
+                    <span className="text-sm font-medium uppercase tracking-[0.4em] text-white/30 mb-4">
+                        Initialsing
+                    </span>
+                    <div className="text-7xl md:text-8xl font-thin text-white tabular-nums tracking-tighter">
+                        {Math.round(progress)}<span className="text-xl md:text-2xl ml-1 text-white/20">%</span>
+                    </div>
+                </motion.div>
 
-                {/* Masked Liquid Layer */}
-                <g mask="url(#textMask)">
-                    <motion.rect
-                        x="0"
-                        width="100%"
-                        fill="white"
-                        className="mix-blend-normal"
-                        initial={{ height: '0%', y: '100%' }}
-                        animate={{
-                            height: `${progress}%`,
-                            y: `${100 - progress}%`
-                        }}
+                {/* Minimal Progress Line */}
+                <div className="w-full h-[1px] bg-white/5 relative overflow-hidden">
+                    <motion.div
+                        className="absolute inset-y-0 left-0 bg-white/40"
+                        style={{ width: `${progress}%` }}
                         transition={{ duration: 0.1, ease: "linear" }}
                     />
-
-                    {/* Internal Wave Path Inside Letters */}
-                    <motion.g
-                        animate={{ x: [0, -720] }}
-                        transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-                        style={{ y: `${100 - progress}%` }}
-                        className="translate-y-[-16px]"
-                    >
-                        <path
-                            d="M0,16 Q180,0 360,16 T720,16 T1080,16 T1440,16 T1800,16 V320 H0 Z"
-                            className="fill-white"
-                        />
-                    </motion.g>
-                </g>
-            </svg>
-
-            {/* Precision Counter (Bottom Right) */}
-            <motion.div
-                animate={phase === 'zoom' ? { opacity: 0 } : { opacity: 1 }}
-                className="absolute bottom-12 right-12 z-20 flex flex-col items-end"
-            >
-                <div className="text-4xl font-mono text-white/20 tabular-nums font-extralight tracking-tighter">
-                    {progress.toFixed(1)}<span className="text-xs ml-1">%</span>
                 </div>
-                <div className="mt-2 w-32 h-[1px] bg-white/5 relative">
-                    <div className="absolute inset-y-0 left-0 bg-white/20" style={{ width: `${progress}%` }} />
-                </div>
-            </motion.div>
 
-            {/* Portal Zoom Overlay */}
+                {/* Subtext info */}
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.4, duration: 1 }}
+                    className="flex justify-between w-full text-[10px] font-medium uppercase tracking-widest text-white/20"
+                >
+                    <span>{NAME}</span>
+                    <span>Portfolio v0.1</span>
+                </motion.div>
+            </div>
+
+            {/* Portal Zoom Overlay (Refined for cleanliness) */}
             <motion.div
                 className="absolute inset-0 z-30 bg-white pointer-events-none"
-                initial={{ clipPath: 'circle(0% at 50% 50%)' }}
-                animate={phase === 'zoom' ? { clipPath: 'circle(150% at 50% 50%)' } : { clipPath: 'circle(0% at 50% 50%)' }}
-                transition={{ duration: 1, ease: [0.65, 0, 0.35, 1] }}
+                initial={{ opacity: 0 }}
+                animate={phase === 'zoom' ? { opacity: 1 } : { opacity: 0 }}
+                transition={{ duration: 0.8, ease: [0.65, 0, 0.35, 1] }}
             />
 
             {/* Transition Final Blur Reveal */}
-            <AnimatePresence>
+            <AnimatePresence mode="wait">
                 {phase === 'zoom' && (
                     <motion.div
-                        initial={{ opacity: 0, scale: 0.8, filter: 'blur(20px)' }}
+                        initial={{ opacity: 0, scale: 1.1, filter: 'blur(10px)' }}
                         animate={{ opacity: 0.1, scale: 1, filter: 'blur(0px)' }}
                         exit={{ opacity: 0 }}
                         className="absolute inset-0 z-40 bg-black pointer-events-none"
@@ -141,12 +107,11 @@ export const PageLoader = ({ onComplete }: { onComplete: () => void }) => {
                 )}
             </AnimatePresence>
 
-            {/* Custom Styles for masking and alignment */}
             <style dangerouslySetInnerHTML={{
                 __html: `
-                text {
-                    user-select: none;
-                    font-family: var(--font-playfair), sans-serif;
+                @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100;400;900&display=swap');
+                body {
+                    font-family: 'Outfit', sans-serif;
                 }
             ` }} />
         </div>
