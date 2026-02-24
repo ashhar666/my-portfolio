@@ -1,3 +1,5 @@
+"use client";
+
 import MinimalistHeroDemo from "@/components/ui/demo";
 import AboutSection from "@/components/ui/about-section";
 import ProjectsSection from "@/components/ui/projects-section";
@@ -7,7 +9,7 @@ import Footer from "@/components/ui/footer";
 export default function Home() {
   return (
     <main className="relative">
-      <MinimalistHeroDemo isLoaded={true} />
+      <MinimalistHeroDemo />
       <AboutSection />
       <ProjectsSection />
       <ContactSection />

@@ -3,7 +3,7 @@ import { Github, Mail, Instagram, Twitter, Linkedin } from 'lucide-react';
 import { MinimalistHero } from './minimalist-hero';
 import { ThemeToggle } from './theme-toggle';
 
-const MinimalistHeroDemo = ({ isLoaded = true }: { isLoaded?: boolean }) => {
+const MinimalistHeroDemo = () => {
     const navLinks = [
         { label: 'HOME', href: '#home' },
         { label: 'PRODUCT', href: '#projects' },
