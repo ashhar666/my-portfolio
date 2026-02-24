@@ -140,13 +140,6 @@ const ProjectCard = ({ project, index }: { project: Project, index: number }) =>
             <h3 className="text-2xl font-bold text-foreground transition-colors">{project.title}</h3>
             <p className="text-base leading-relaxed text-foreground/60 flex-grow">{project.description}</p>
 
-            <div className="flex flex-wrap gap-2 pt-2">
-                {project.tech.map((tech: string) => (
-                    <span key={tech} className="rounded-full border border-foreground/10 bg-foreground/[0.03] px-4 py-1.5 text-xs font-medium text-foreground/70">
-                        {tech}
-                    </span>
-                ))}
-            </div>
 
             <div className="flex items-center gap-2 text-sm font-semibold text-foreground/40 group-hover:text-foreground transition-colors pt-4">
                 <span>View project</span>
