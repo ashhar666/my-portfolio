@@ -5,7 +5,7 @@ import { motion, useScroll, useSpring } from 'framer-motion';
 import Image from 'next/image';
 import {
     SiPython, SiDjango, SiReact,
-    SiPostgresql, SiNextdotjs, SiTypescript,
+    SiBootstrap, SiSqlite, SiNextdotjs, SiTypescript,
     SiTailwindcss, SiHtml5, SiCss3
 } from 'react-icons/si';
 import {
@@ -41,16 +41,17 @@ const AboutSection = () => {
 
 
     const marqueeSkills = [
-        { icon: IoLogoGithub, label: "GitHub" },
-        { icon: IoLogoJavascript, label: "JavaScript" },
-        { icon: SiPython, label: "Python" },
-        { icon: SiDjango, label: "Django" },
-        { icon: SiReact, label: "React" },
-        { icon: SiHtml5, label: "HTML5" },
-        { icon: SiCss3, label: "CSS3" },
-        { icon: SiNextdotjs, label: "Next.js" },
-        { icon: SiPostgresql, label: "PostgreSQL" },
-        { icon: SiTailwindcss, label: "Tailwind" },
+        { icon: IoLogoGithub, label: "GitHub", color: "#ffffff" },
+        { icon: IoLogoJavascript, label: "JavaScript", color: "#F7DF1E" },
+        { icon: SiPython, label: "Python", color: "#3776AB" },
+        { icon: SiDjango, label: "Django", color: "#092E20" },
+        { icon: SiReact, label: "React", color: "#61DAFB" },
+        { icon: SiHtml5, label: "HTML5", color: "#E34F26" },
+        { icon: SiCss3, label: "CSS3", color: "#1572B6" },
+        { icon: SiNextdotjs, label: "Next.js", color: "#ffffff" },
+        { icon: SiBootstrap, label: "Bootstrap", color: "#7952B3" },
+        { icon: SiSqlite, label: "SQLite", color: "#003B57" },
+        { icon: SiTailwindcss, label: "Tailwind", color: "#06B6D4" },
     ];
 
     const bioLines = [
@@ -148,7 +149,8 @@ const AboutSection = () => {
                                     <item.icon
                                         size="2.2rem"
                                         aria-label={item.label}
-                                        className="text-foreground opacity-40 transition-all duration-500 group-hover:opacity-100 group-hover:scale-110"
+                                        style={{ color: item.color }}
+                                        className="opacity-80 transition-all duration-500 group-hover:opacity-100 group-hover:scale-110 group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]"
                                     />
                                     <span className="text-[9px] opacity-0 transition-opacity duration-300 group-hover:opacity-100 whitespace-nowrap tracking-widest uppercase font-bold text-foreground/30">
                                         {item.label}
