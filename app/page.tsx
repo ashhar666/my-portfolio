@@ -8,7 +8,7 @@ import Footer from "@/components/ui/footer";
 
 export default function Home() {
   return (
-    <main className="relative">
+    <main id="home" className="relative">
       <MinimalistHeroDemo />
       <AboutSection />
       <ProjectsSection />

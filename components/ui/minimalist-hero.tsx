@@ -44,12 +44,13 @@ const SocialIcon = ({ href, icon: Icon }: { href: string; icon: LucideIcon }) =>
 
 const LogoWithName = () => {
     const [open, setOpen] = useState(false);
-    const ref = useRef<HTMLDivElement>(null);
+    const ref = useRef<HTMLAnchorElement>(null);
 
     return (
-        <div
+        <a
+            href="#home"
             ref={ref}
-            className="flex items-center gap-3"
+            className="flex items-center gap-3 group"
             onMouseEnter={() => setOpen(true)}
             onMouseLeave={() => setOpen(false)}
         >
@@ -61,7 +62,7 @@ const LogoWithName = () => {
                 className="block cursor-pointer focus:outline-none"
                 aria-label="Logo"
             >
-                <div className="relative h-10 w-10 overflow-hidden rounded-full border border-foreground/10 bg-foreground/5 p-1 transition-colors hover:border-foreground/20">
+                <div className="relative h-10 w-10 overflow-hidden rounded-full border border-foreground/10 bg-foreground/5 p-1 transition-colors group-hover:border-foreground/20">
                     <Image
                         src="/favicon.png"
                         alt="Logo"
@@ -84,7 +85,7 @@ const LogoWithName = () => {
             >
                 ASHHAR SHAHAN PK
             </motion.span>
-        </div>
+        </a>
     );
 };
 

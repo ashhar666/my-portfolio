@@ -6,9 +6,9 @@ import { ThemeToggle } from './theme-toggle';
 const MinimalistHeroDemo = () => {
     const navLinks = [
         { label: 'HOME', href: '#home' },
-        { label: 'PRODUCT', href: '#projects' },
-        { label: 'STORE', href: '#about' },
-        { label: 'ABOUT US', href: '#contact' },
+        { label: 'PROJECTS', href: '#projects' },
+        { label: 'ABOUT', href: '#about' },
+        { label: 'CONTACT', href: '#contact' },
     ];
 
     const socialLinks = [
