@@ -127,12 +127,16 @@ const ProjectCard = ({ project, index }: { project: Project, index: number }) =>
 
             {/* Links Overlay */}
             <div className="absolute right-6 top-6 flex gap-3 z-20 opacity-0 transform translate-y-[-10px] transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
-                <a href={project.liveUrl} className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-xl hover:bg-white/20 transition-all border border-white/10" onClick={e => e.stopPropagation()}>
-                    <FiExternalLink className="h-5 w-5" />
-                </a>
-                <a href={project.githubUrl} className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-xl hover:bg-white/20 transition-all border border-white/10" onClick={e => e.stopPropagation()}>
-                    <FiGithub className="h-5 w-5" />
-                </a>
+                {project.liveUrl !== '#' && (
+                    <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-xl hover:bg-white/20 transition-all border border-white/10" onClick={e => e.stopPropagation()}>
+                        <FiExternalLink className="h-5 w-5" />
+                    </a>
+                )}
+                {project.githubUrl !== '#' && (
+                    <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-xl hover:bg-white/20 transition-all border border-white/10" onClick={e => e.stopPropagation()}>
+                        <FiGithub className="h-5 w-5" />
+                    </a>
+                )}
             </div>
         </div>
 

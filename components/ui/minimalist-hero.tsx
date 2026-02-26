@@ -1,8 +1,8 @@
 'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { LucideIcon } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { LucideIcon, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
 import { Typewriter } from './typewriter-text';
@@ -103,6 +103,17 @@ export const MinimalistHero = ({
     themeToggle,
     typewriterWords,
 }: MinimalistHeroProps) => {
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+    // Close mobile menu on route-like scroll nav
+    const handleMobileNavClick = () => setMobileMenuOpen(false);
+
+    // Prevent body scroll when menu is open
+    useEffect(() => {
+        document.body.style.overflow = mobileMenuOpen ? 'hidden' : '';
+        return () => { document.body.style.overflow = ''; };
+    }, [mobileMenuOpen]);
+
     return (
         <div
             className={cn(
@@ -110,6 +121,69 @@ export const MinimalistHero = ({
                 className
             )}
         >
+            {/* Mobile Full-Screen Menu */}
+            <AnimatePresence>
+                {mobileMenuOpen && (
+                    <motion.div
+                        key="mobile-menu"
+                        initial={{ opacity: 0, y: '-100%' }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: '-100%' }}
+                        transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                        className="fixed inset-0 z-50 flex flex-col bg-background px-8 py-10"
+                    >
+                        {/* Close Button */}
+                        <div className="flex justify-end mb-16">
+                            <button
+                                onClick={() => setMobileMenuOpen(false)}
+                                className="flex items-center justify-center h-10 w-10 rounded-full border border-foreground/10 text-foreground/60 hover:text-foreground transition-colors"
+                                aria-label="Close menu"
+                            >
+                                <X className="h-5 w-5" />
+                            </button>
+                        </div>
+
+                        {/* Nav Links */}
+                        <nav className="flex flex-col gap-8">
+                            {navLinks.map((link, i) => (
+                                <motion.a
+                                    key={link.label}
+                                    href={link.href}
+                                    onClick={handleMobileNavClick}
+                                    initial={{ opacity: 0, x: -24 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    transition={{ duration: 0.35, delay: i * 0.07, ease: [0.22, 1, 0.36, 1] }}
+                                    className="text-4xl font-bold tracking-tight text-foreground/80 hover:text-foreground transition-colors"
+                                >
+                                    {link.label}
+                                </motion.a>
+                            ))}
+                        </nav>
+
+                        {/* Social links at bottom */}
+                        <div className="mt-auto flex items-center gap-6">
+                            {socialLinks.map((link, i) => {
+                                const Icon = link.icon;
+                                return (
+                                    <motion.a
+                                        key={i}
+                                        href={link.href}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        initial={{ opacity: 0, y: 12 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ duration: 0.3, delay: 0.3 + i * 0.06 }}
+                                        className="text-foreground/50 hover:text-foreground transition-colors"
+                                    >
+                                        <Icon className="h-5 w-5" />
+                                    </motion.a>
+                                );
+                            })}
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
             {/* Header */}
             <header className="z-30 flex w-full max-w-7xl items-center justify-between">
                 <LogoWithName />
@@ -126,6 +200,7 @@ export const MinimalistHero = ({
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.5 }}
+                        onClick={() => setMobileMenuOpen(true)}
                         className="flex flex-col space-y-1.5 md:hidden"
                         aria-label="Open menu"
                     >

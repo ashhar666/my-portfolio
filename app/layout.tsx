@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     siteName: "Ashhar Shahan Portfolio",
     images: [
       {
-        url: "/profile.png",
+        url: "/profile.webp",
         width: 1200,
         height: 630,
         alt: "Ashhar Shahan Portfolio",
@@ -50,11 +50,9 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Ashhar Shahan | Python Full-Stack Developer",
     description: "Explore the portfolio of Ashhar Shahan, featuring modern web applications.",
-    images: ["/profile.png"],
+    images: ["/profile.webp"],
   },
-  verification: {
-    google: "YOUR_GOOGLE_VERIFICATION_ID_HERE",
-  },
+
   icons: {
     icon: [
       { url: '/favicon.png', type: 'image/png' },

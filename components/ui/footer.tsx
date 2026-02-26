@@ -106,10 +106,10 @@ const Footer = () => {
 
                     <div className="flex flex-wrap justify-center gap-x-8 gap-y-2 text-[10px] md:text-xs font-medium text-foreground/40 uppercase tracking-widest">
                         <span>© {new Date().getFullYear()} ASHHAR SHAHAN</span>
-                        <a href="#home" className="hover:text-foreground transition-colors">Privacy</a>
-                        <a href="#home" className="hover:text-foreground transition-colors">Terms</a>
                         <span className="text-foreground/20 hidden md:inline">|</span>
                         <span className="normal-case tracking-normal">Kerala, India</span>
+                        <span className="text-foreground/20 hidden md:inline">|</span>
+                        <span className="normal-case tracking-normal">Built with Next.js</span>
                     </div>
                 </div>
             </div>

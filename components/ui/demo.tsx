@@ -13,7 +13,7 @@ const MinimalistHeroDemo = () => {
 
     const socialLinks = [
         { icon: Github, href: 'https://github.com/ashhar666' },
-        { icon: Linkedin, href: 'https://www.linkedin.com/feed/' },
+        { icon: Linkedin, href: 'https://linkedin.com/in/ashharshahan' },
         { icon: Twitter, href: 'https://twitter.com/ashharshahan' },
         { icon: Mail, href: 'mailto:ashharshahan666@gmail.com' },
     ];
@@ -23,7 +23,7 @@ const MinimalistHeroDemo = () => {
             navLinks={navLinks}
             mainText="I'm ASHHAR SHAHAN, a dedicated Python Full Stack Developer with a strong focus on designing scalable software solutions, creating intuitive user experiences, and developing high-performance backend systems that solve real-world problems."
             readMoreLink="#about"
-            imageSrc="/profile.png"
+            imageSrc="/profile.webp"
             imageAlt="A portrait of Ashhar Shahan."
             overlayText={{
                 part1: 'less is',

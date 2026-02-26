@@ -27,8 +27,14 @@ const lineVariants = {
 
 
 
+const getMonthsExperience = () => {
+    const start = new Date(2024, 9, 1); // October 2024
+    const now = new Date();
+    return (now.getFullYear() - start.getFullYear()) * 12 + (now.getMonth() - start.getMonth());
+};
+
 const stats = [
-    { label: 'Months Experience', value: 6, suffix: '' },
+    { label: 'Months Experience', value: getMonthsExperience(), suffix: '' },
     { label: 'Projects Built', value: 5, suffix: '' },
     { label: 'Technologies', value: 10, suffix: '+' },
 ];
@@ -74,7 +80,7 @@ const AboutSection = () => {
                     {/* Avatar */}
                     <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}>
                         <motion.div className="h-[200px] w-[200px] overflow-hidden rounded-full cursor-pointer" style={{ filter: 'grayscale(100%)' }} whileHover={{ filter: 'grayscale(0%)', scale: 1.05 }} transition={{ duration: 0.5 }}>
-                            <Image src="/profile.png" alt="ASHHAR SHAHAN" width={200} height={200} className="h-full w-full object-cover" />
+                            <Image src="/profile.webp" alt="ASHHAR SHAHAN" width={200} height={200} className="h-full w-full object-cover" />
                         </motion.div>
                     </motion.div>
 
