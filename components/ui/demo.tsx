@@ -25,7 +25,7 @@ const MinimalistHeroDemo = () => {
             navLinks={navLinks}
             mainText="I'm ASHHAR SHAHAN, a dedicated Python Full Stack Developer with a strong focus on designing scalable software solutions, creating intuitive user experiences, and developing high-performance backend systems that solve real-world problems."
             readMoreLink="#about"
-            imageSrc="/profile.webp"
+            imageSrc="/profile.png"
             imageAlt="A portrait of Ashhar Shahan."
             overlayText={{
                 part1: 'less is',
