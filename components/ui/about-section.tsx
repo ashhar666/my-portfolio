@@ -34,8 +34,8 @@ const getMonthsExperience = () => {
 };
 
 const stats = [
-    { label: 'Months Experience', value: getMonthsExperience(), suffix: '' },
-    { label: 'Projects Built', value: 5, suffix: '' },
+    { label: 'Months Experience', value: 6, suffix: '+' },
+    { label: 'Projects Built', value: 2, suffix: '' },
     { label: 'Technologies', value: 10, suffix: '+' },
 ];
 
