@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { Github, Mail, Instagram, Twitter, Linkedin } from 'lucide-react';
 import { MinimalistHero } from './minimalist-hero';
