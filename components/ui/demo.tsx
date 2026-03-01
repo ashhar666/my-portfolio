@@ -31,10 +31,13 @@ const MinimalistHeroDemo = () => {
                 part1: 'less is',
                 part2: 'more.',
             }}
-            animatedPrefix="I engineer scalable and secure"
+            animatedPrefix="I engineer secure"
             animatedWords={[
+                "code.",
+                "APIs.",
+                "systems.",
+                "platforms.",
                 "architectures.",
-                "applications.",
                 "infrastructures."
             ]}
             socialLinks={socialLinks}
