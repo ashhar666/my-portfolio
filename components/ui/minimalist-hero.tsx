@@ -221,20 +221,20 @@ export const MinimalistHero = ({
                     transition={{ duration: 0.6, delay: 0.5 }}
                     className="z-20 order-2 md:order-1 text-center md:text-left"
                 >
-                    <p className="mx-auto max-w-sm text-sm md:text-base leading-relaxed tracking-wider text-foreground/60 uppercase md:mx-0 mb-8">
+                    <p className="mx-auto max-w-[10rem] text-xs leading-relaxed tracking-wide text-foreground/50 uppercase md:mx-0 mb-3">
                         {mainText}
                     </p>
-                    <div className="flex flex-col items-center md:items-start gap-1 mb-6">
-                        <span className="text-sm md:text-base tracking-[0.2em] uppercase text-foreground/50 font-bold mb-2">My code is</span>
-                        <div className="text-6xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-none text-foreground py-2">
+                    <div className="flex flex-col items-center md:items-start gap-1">
+                        <span className="text-xs tracking-widest uppercase text-foreground/40 font-medium">My code is</span>
+                        <div className="text-4xl md:text-5xl font-extrabold tracking-tighter leading-none text-foreground">
                             <AnimatedTextCycle
                                 words={["Fast", "Secure", "Optimized", "Scalable", "Clean"]}
                                 interval={2500}
-                                className="text-foreground -mt-3"
+                                className="text-foreground"
                             />
                         </div>
                     </div>
-                    <a href={readMoreLink} className="inline-block text-sm md:text-base font-bold tracking-[0.2em] uppercase text-foreground/70 hover:text-foreground transition-colors border-b-2 border-foreground/30 hover:border-foreground pb-1">
+                    <a href={readMoreLink} className="mt-5 inline-block text-xs font-medium tracking-widest uppercase text-foreground/60 hover:text-foreground transition-colors border-b border-foreground/20 hover:border-foreground pb-0.5">
                         Read More
                     </a>
                 </motion.div>
