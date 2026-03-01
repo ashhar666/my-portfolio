@@ -14,6 +14,7 @@ import {
 import { MagneticButton } from './magnetic-button';
 import { Counter } from './counter';
 import { Marquee } from './marquee';
+import HyperTextParagraph from './hyper-text-with-decryption';
 
 const containerVariants = {
     hidden: {},
@@ -24,10 +25,6 @@ const lineVariants = {
     hidden: { opacity: 0, x: -24 },
     visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } }
 };
-
-
-
-
 
 const AboutSection = () => {
     const sectionRef = useRef<HTMLElement>(null);
@@ -50,12 +47,19 @@ const AboutSection = () => {
         { icon: SiTailwindcss, label: "Tailwind", color: "#06B6D4" },
     ];
 
-    const bioLines = [
-        <>I don’t just build websites — I craft <strong className="text-foreground">digital experiences</strong>.</>,
-        <>I’m a <span className="text-foreground font-semibold">Python Full Stack Developer</span> driven by the challenge of turning complex ideas into elegant, high-performance applications. My passion lies in creating systems that are not only visually engaging but also scalable, efficient, and built with purpose.</>,
-        <>With a strong foundation in both frontend and backend development, I enjoy working across the entire development lifecycle — from concept and design to deployment and optimization. Whether it’s developing robust APIs, designing responsive interfaces, or solving performance challenges, I approach every project with precision and curiosity.</>,
-        <>Technology evolves fast, and so do I. I’m constantly learning, experimenting, and refining my skills to stay ahead — because <strong>great developers never stop growing.</strong></>,
-        <>What sets me apart is my mindset: I focus on clean architecture, user-centered design, and solutions that create real impact.</>,
+    const bioText = "I don’t just build websites — I craft digital experiences. I’m a Python Full Stack Developer driven by the challenge of turning complex ideas into elegant, high-performance applications. My passion lies in creating systems that are not only visually engaging but also scalable, efficient, and built with purpose. I focus on clean architecture, user-centered design, and solutions that create real impact.";
+
+    const highlightWords = [
+        "experiences.",
+        "Python",
+        "Full",
+        "Stack",
+        "elegant,",
+        "applications.",
+        "scalable,",
+        "efficient,",
+        "purpose.",
+        "architecture,",
     ];
 
     return (
@@ -97,11 +101,13 @@ const AboutSection = () => {
                             </div>
                         </motion.div>
 
-                        {/* Bio — staggered lines */}
-                        <motion.div variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }} className="space-y-6 text-[15px] leading-relaxed text-foreground/70">
-                            {bioLines.map((line, i) => (
-                                <motion.p key={i} variants={lineVariants}>{line}</motion.p>
-                            ))}
+                        {/* Bio — Decryption Text */}
+                        <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }}>
+                            <HyperTextParagraph
+                                text={bioText}
+                                highlightWords={highlightWords}
+                                className="text-[17px] text-foreground/80 md:text-[19px] mb-8"
+                            />
                         </motion.div>
 
                         {/* My Vision Section */}
