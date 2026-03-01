@@ -24,7 +24,7 @@ interface MinimalistHeroProps {
     className?: string;
     themeToggle?: React.ReactNode;
     typewriterWords?: string[];
-    animatedPrefix?: string;
+    animatedPrefix?: React.ReactNode;
     animatedWords?: string[];
 }
 
@@ -262,18 +262,15 @@ export const MinimalistHero = ({
                     className="z-20 order-3 flex items-center justify-center text-center md:justify-start"
                 >
                     <h1 className={cn(
-                        "font-extrabold text-foreground tracking-tighter leading-[0.95]",
+                        "font-extrabold text-foreground tracking-tighter",
                         (typewriterWords || animatedWords)
-                            ? "text-5xl md:text-6xl lg:text-7xl"
-                            : "text-7xl md:text-8xl lg:text-9xl"
+                            ? "text-4xl md:text-5xl lg:text-6xl leading-[1.1]"
+                            : "text-7xl md:text-8xl lg:text-9xl leading-[0.95]"
                     )}>
                         {animatedWords ? (
                             <>
                                 {animatedPrefix && (
-                                    <>
-                                        {animatedPrefix}
-                                        <br />
-                                    </>
+                                    <span className="inline-block mr-3 mb-2">{animatedPrefix}</span>
                                 )}
                                 <AnimatedTextCycle
                                     words={animatedWords}

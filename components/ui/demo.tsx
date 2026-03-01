@@ -31,13 +31,16 @@ const MinimalistHeroDemo = () => {
                 part1: 'less is',
                 part2: 'more.',
             }}
-            animatedPrefix="less is"
+            animatedPrefix={
+                <>
+                    I transform complex ideas into <br className="hidden md:block" />
+                    reliable, production-ready
+                </>
+            }
             animatedWords={[
-                "Fast.",
-                "Secure.",
-                "Optimized.",
-                "Scalable.",
-                "Clean."
+                "architectures.",
+                "applications.",
+                "products."
             ]}
             socialLinks={socialLinks}
             locationText="Kerala, India"
