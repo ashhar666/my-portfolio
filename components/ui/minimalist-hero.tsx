@@ -24,6 +24,8 @@ interface MinimalistHeroProps {
     className?: string;
     themeToggle?: React.ReactNode;
     typewriterWords?: string[];
+    animatedPrefix?: string;
+    animatedWords?: string[];
 }
 
 // Helper component for navigation links
@@ -103,6 +105,8 @@ export const MinimalistHero = ({
     className,
     themeToggle,
     typewriterWords,
+    animatedPrefix,
+    animatedWords,
 }: MinimalistHeroProps) => {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -221,20 +225,8 @@ export const MinimalistHero = ({
                     transition={{ duration: 0.6, delay: 0.5 }}
                     className="z-20 order-2 md:order-1 text-center md:text-left"
                 >
-                    <p className="mx-auto max-w-[10rem] text-xs leading-relaxed tracking-wide text-foreground/50 uppercase md:mx-0 mb-3">
-                        {mainText}
-                    </p>
-                    <div className="flex flex-col items-center md:items-start gap-1">
-                        <span className="text-xs tracking-widest uppercase text-foreground/40 font-medium">My code is</span>
-                        <div className="text-4xl md:text-5xl font-extrabold tracking-tighter leading-none text-foreground">
-                            <AnimatedTextCycle
-                                words={["Fast", "Secure", "Optimized", "Scalable", "Clean"]}
-                                interval={2500}
-                                className="text-foreground"
-                            />
-                        </div>
-                    </div>
-                    <a href={readMoreLink} className="mt-5 inline-block text-xs font-medium tracking-widest uppercase text-foreground/60 hover:text-foreground transition-colors border-b border-foreground/20 hover:border-foreground pb-0.5">
+                    <p className="mx-auto max-w-xs text-sm leading-relaxed text-foreground/80 md:mx-0">{mainText}</p>
+                    <a href={readMoreLink} className="mt-4 inline-block text-sm font-medium text-foreground underline decoration-from-font">
                         Read More
                     </a>
                 </motion.div>
@@ -271,11 +263,24 @@ export const MinimalistHero = ({
                 >
                     <h1 className={cn(
                         "font-extrabold text-foreground tracking-tighter leading-[0.95]",
-                        typewriterWords
+                        (typewriterWords || animatedWords)
                             ? "text-5xl md:text-6xl lg:text-7xl"
                             : "text-7xl md:text-8xl lg:text-9xl"
                     )}>
-                        {typewriterWords ? (
+                        {animatedWords ? (
+                            <>
+                                {animatedPrefix && (
+                                    <>
+                                        {animatedPrefix}
+                                        <br />
+                                    </>
+                                )}
+                                <AnimatedTextCycle
+                                    words={animatedWords}
+                                    interval={2500}
+                                />
+                            </>
+                        ) : typewriterWords ? (
                             <Typewriter
                                 text={typewriterWords}
                                 loop={true}

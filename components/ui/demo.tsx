@@ -31,10 +31,13 @@ const MinimalistHeroDemo = () => {
                 part1: 'less is',
                 part2: 'more.',
             }}
-            typewriterWords={[
-                "less is\nmore.",
-                "Design with\npurpose.",
-                "Precision over\nperfection."
+            animatedPrefix="less is"
+            animatedWords={[
+                "Fast.",
+                "Secure.",
+                "Optimized.",
+                "Scalable.",
+                "Clean."
             ]}
             socialLinks={socialLinks}
             locationText="Kerala, India"
