@@ -27,17 +27,7 @@ const lineVariants = {
 
 
 
-const getMonthsExperience = () => {
-    const start = new Date(2024, 9, 1); // October 2024
-    const now = new Date();
-    return (now.getFullYear() - start.getFullYear()) * 12 + (now.getMonth() - start.getMonth());
-};
 
-const stats = [
-    { label: 'Months Experience', value: 6, suffix: '+' },
-    { label: 'Projects Built', value: 2, suffix: '' },
-    { label: 'Technologies', value: 10, suffix: '+' },
-];
 
 const AboutSection = () => {
     const sectionRef = useRef<HTMLElement>(null);
@@ -91,22 +81,20 @@ const AboutSection = () => {
                             <p className="text-base text-foreground/60">Python Full Stack Developer · Kerala, India</p>
                         </motion.div>
 
-                        {/* Animated counters */}
+                        {/* Status Badge */}
                         <motion.div
-                            className="grid grid-cols-2 gap-4 sm:grid-cols-4"
                             initial={{ opacity: 0, y: 16 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.6, delay: 0.1 }}
                         >
-                            {stats.map((stat) => (
-                                <div key={stat.label} className="rounded-lg bg-foreground/5 p-3 text-center">
-                                    <div className="text-2xl font-bold text-foreground">
-                                        <Counter target={stat.value} suffix={stat.suffix} />
-                                    </div>
-                                    <div className="mt-1 text-[10px] uppercase tracking-wider text-foreground/40">{stat.label}</div>
-                                </div>
-                            ))}
+                            <div className="inline-flex items-center gap-2.5 rounded-full border border-foreground/10 bg-foreground/5 px-4 py-1.5 text-sm font-semibold tracking-wide text-foreground/80 uppercase">
+                                <span className="relative flex h-2.5 w-2.5">
+                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                                </span>
+                                Working as a Freelancer
+                            </div>
                         </motion.div>
 
                         {/* Bio — staggered lines */}
