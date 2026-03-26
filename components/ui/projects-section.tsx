@@ -36,21 +36,13 @@ const TiltCard = ({ children, className }: { children: React.ReactNode; classNam
 
 const projects = [
     {
-        title: 'WedStory Co.',
-        description: 'A premium wedding photography and cinematography brand showcase. Features elegant galleries, cinematic storytelling, and a sophisticated aesthetic capturing life\'s most precious moments.',
-        tech: ['React', 'Node.js', 'Express', 'Vanilla CSS', 'HTML'],
-        image: '/projects/wedstory.png',
-        liveUrl: '#',
-        githubUrl: '#',
-    },
-    {
-        title: 'IndiRoots',
-        description: 'A modern travel and tourism platform exploring the heritage of India. Features interactive destination guides, immersive cultural storytelling, and a seamless travel planning experience.',
-        tech: ['Vanilla JS', 'Three.js', 'Node.js', 'Vanilla CSS', 'HTML'],
-        image: '/projects/indiroots.jpg',
-        liveUrl: '#',
-        githubUrl: '#',
-    },
+        title: 'Keralam',
+        description: 'A comprehensive travel and tourism guide exploring the magic of Kerala. Features interactive destination showcases, cultural insights, UNESCO heritage details, and a dynamic gallery capturing the essence of God\'s Own Country.',
+        tech: ['Next.js', 'React', 'Tailwind CSS', 'Framer Motion'],
+        image: '/projects/Screenshot 2026-03-22 142838.png',
+        liveUrl: 'https://kerala-sepia.vercel.app/',
+        githubUrl: 'https://github.com/ashhar666/kerala.git',
+    }
 ];
 
 const ProjectsSection = () => {
@@ -128,12 +120,12 @@ const ProjectCard = ({ project, index }: { project: Project, index: number }) =>
             {/* Links Overlay */}
             <div className="absolute right-6 top-6 flex gap-3 z-20 opacity-0 transform translate-y-[-10px] transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
                 {project.liveUrl !== '#' && (
-                    <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-xl hover:bg-white/20 transition-all border border-white/10" onClick={e => e.stopPropagation()}>
+                    <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="flex h-10 w-10 items-center justify-center rounded-full bg-black/60 text-white backdrop-blur-xl hover:bg-black/80 transition-all border border-white/10" onClick={e => e.stopPropagation()}>
                         <FiExternalLink className="h-5 w-5" />
                     </a>
                 )}
                 {project.githubUrl !== '#' && (
-                    <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-xl hover:bg-white/20 transition-all border border-white/10" onClick={e => e.stopPropagation()}>
+                    <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="flex h-10 w-10 items-center justify-center rounded-full bg-black/60 text-white backdrop-blur-xl hover:bg-black/80 transition-all border border-white/10" onClick={e => e.stopPropagation()}>
                         <FiGithub className="h-5 w-5" />
                     </a>
                 )}
@@ -145,10 +137,15 @@ const ProjectCard = ({ project, index }: { project: Project, index: number }) =>
             <p className="text-base leading-relaxed text-foreground/60 flex-grow">{project.description}</p>
 
 
-            <div className="flex items-center gap-2 text-sm font-semibold text-foreground/40 group-hover:text-foreground transition-colors pt-4">
+            <a 
+                href={project.liveUrl} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="flex items-center gap-2 text-sm font-semibold text-foreground/40 group-hover:text-foreground transition-colors pt-4 w-fit"
+            >
                 <span>View project</span>
                 <FiArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-2" />
-            </div>
+            </a>
         </div>
 
         {/* Shimmer Effect */}
