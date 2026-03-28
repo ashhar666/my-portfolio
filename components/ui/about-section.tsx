@@ -117,6 +117,15 @@ const AboutSection = () => (
                             Kerala, India
                         </p>
 
+                        {/* Degree badge */}
+                        <div className="inline-flex items-center gap-2 rounded-full border border-foreground/10 bg-foreground/[0.04] px-3 py-1.5">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-3 w-3 text-foreground/40">
+                                <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                                <path d="M6 12v5c3 3 9 3 12 0v-5" />
+                            </svg>
+                            <span className="text-[11px] font-semibold tracking-wider text-foreground/50 uppercase">BCA Graduate</span>
+                        </div>
+
                         {/* Availability */}
                         <div className="inline-flex items-center gap-2 pt-1">
                             <span className="relative flex h-1.5 w-1.5">
@@ -156,23 +165,22 @@ const AboutSection = () => (
                         className="mt-6 max-w-xl space-y-5 text-[15px] leading-relaxed text-foreground/60 sm:mt-8 sm:space-y-6 md:text-[16px] lg:text-[17px]"
                     >
                         <p>
-                            I&apos;m a Python Full Stack Developer driven by the challenge of
-                            turning complex ideas into elegant, high-performance applications.
-                            My passion lies in creating systems that are not only visually
-                            engaging but also scalable, efficient, and built with purpose.
+                            I&apos;m Ashhar — a BCA graduate and full-stack developer from Kerala
+                            who gets genuinely excited about hard problems. I don&apos;t just write
+                            code that works; I obsess over why it works, how it scales, and
+                            whether the person using it actually enjoys it.
                         </p>
                         <p>
-                            With a strong foundation in backend architecture using Django and
-                            Python, combined with modern frontend frameworks like React and
-                            Next.js, I bridge the gap between robust server-side logic and
-                            seamless user experiences. I specialize in designing RESTful APIs,
-                            optimizing database schemas, and writing clean, maintainable code.
+                            My stack is Python and Django on the backend, React and Next.js on
+                            the front. But honestly? The tools are just vocabulary — the real
+                            work is knowing what to say. Clean APIs, fast UIs, databases that
+                            don&apos;t collapse under pressure — that&apos;s the standard I hold myself to.
                         </p>
                         <p>
-                            Whether I&apos;m architecting a new platform from the ground up or
-                            optimizing an existing codebase, my focus remains constant: delivering
-                            user-centered design and technical solutions that create real impact
-                            for businesses and their customers.
+                            I&apos;ve shipped projects for real clients with real deadlines. I know
+                            what it&apos;s like to debug at midnight and still deliver on time. If
+                            you&apos;re looking for someone who takes ownership — and loses sleep
+                            over it — I&apos;m your person.
                         </p>
                     </motion.div>
 
@@ -190,7 +198,7 @@ const AboutSection = () => (
                             href="#contact"
                             className="inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-2.5 text-sm font-semibold text-background transition-opacity hover:opacity-75"
                         >
-                            Get in touch
+                            Let&apos;s work together
                         </MagneticButton>
                         <MagneticButton
                             as="a"
@@ -212,10 +220,10 @@ const AboutSection = () => (
                         className="mt-12 border-l-2 border-foreground/10 pl-5 sm:mt-16 sm:pl-6"
                     >
                         <p className="mb-3 text-[10px] font-bold uppercase tracking-[0.3em] text-foreground/30">
-                            My Vision
+                            My Philosophy
                         </p>
                         <blockquote className="text-lg font-medium italic leading-relaxed text-foreground/80 sm:text-xl md:text-2xl">
-                            &ldquo;To build technology that doesn&apos;t just work — but inspires.&rdquo;
+                            &ldquo;Good software is invisible. You only notice bad software.&rdquo;
                         </blockquote>
                     </motion.div>
                 </div>
