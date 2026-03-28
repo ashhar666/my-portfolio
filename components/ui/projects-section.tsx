@@ -58,8 +58,8 @@ const ProjectsSection = () => {
                     className="mb-16 flex items-end justify-between"
                 >
                     <div>
-                        <h2 className="text-sm font-medium uppercase tracking-[0.2em] text-foreground/40">Projects</h2>
-                        <h3 className="mt-2 text-3xl font-bold text-foreground">Featured Work</h3>
+                        <span className="text-sm font-medium uppercase tracking-[0.2em] text-foreground/40">Projects</span>{/* SEO FIX: demoted from h2 to span — the real page-section title is below */}
+                        <h2 className="mt-2 text-3xl font-bold text-foreground">Featured Work</h2>{/* SEO FIX: promoted from h3 to h2 — primary section heading */}
                     </div>
                 </motion.div>
 

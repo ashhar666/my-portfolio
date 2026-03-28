@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Playfair_Display } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google"; // SEO FIX: removed unused Playfair Display font to reduce bandwidth
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { CursorFollower } from "@/components/ui/cursor-follower";
@@ -18,11 +18,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
-  subsets: ["latin"],
-  weight: ["400", "600", "700"],
-});
+// SEO FIX: Playfair Display removed — the CSS variable was declared but never applied to any visible element
 
 export const metadata: Metadata = {
   title: "Ashhar Shahan | Python Full-Stack Developer",
@@ -31,6 +27,9 @@ export const metadata: Metadata = {
   authors: [{ name: "Ashhar Shahan" }],
   creator: "Ashhar Shahan",
   metadataBase: new URL("https://ashharshahan.vercel.app"),
+  alternates: {
+    canonical: "https://ashharshahan.vercel.app", // SEO FIX: explicit canonical URL
+  },
   robots: {
     index: true,
     follow: true,
@@ -43,7 +42,10 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    type: "website",
+    type: "profile",            // SEO FIX: changed from "website" to "profile" for personal portfolio
+    firstName: "Ashhar",        // SEO FIX
+    lastName: "Shahan",         // SEO FIX
+    username: "ashhar666",      // SEO FIX
     locale: "en_US",
     url: "https://ashharshahan.vercel.app",
     title: "Ashhar Shahan | Python Full-Stack Developer",
@@ -60,6 +62,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
+    site: "@ashharshahan",     // SEO FIX: Twitter/X site handle
+    creator: "@ashharshahan", // SEO FIX: Twitter/X creator handle
     title: "Ashhar Shahan | Python Full-Stack Developer",
     description: "Explore the portfolio of Ashhar Shahan, featuring modern web applications.",
     images: ["/profile.webp"],
@@ -83,7 +87,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`} // SEO FIX: removed unused playfair variable
       >
         <ThemeProvider>
           {/* Global premium effects */}
@@ -91,6 +95,26 @@ export default function RootLayout({
           <GrainOverlay />
           <ScrollToTop />
           {children}
+          {/* SEO FIX: JSON-LD Person structured data for Google Knowledge Panel eligibility */}
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "Person",
+                name: "Ashhar Shahan",
+                url: "https://ashharshahan.vercel.app",
+                image: "https://ashharshahan.vercel.app/profile.webp",
+                jobTitle: "Python Full-Stack Developer",
+                description: "Specializing in scalable web applications, modern UIs, and high-performance backend systems with Python and React.",
+                sameAs: [
+                  "https://github.com/ashhar666",
+                  "https://linkedin.com/in/ashharshahan",
+                  "https://x.com/ashharshahan",
+                ],
+              }),
+            }}
+          />
           <Analytics />
           <SpeedInsights />
         </ThemeProvider>

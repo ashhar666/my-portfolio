@@ -7,6 +7,16 @@ import { cn } from '@/lib/utils';
 import Image from 'next/image';
 import { Typewriter } from './typewriter-text';
 import AnimatedTextCycle from './animated-text-cycle';
+import { DM_Serif_Display } from 'next/font/google';
+
+// Editorial display serif — only used on the hero h1
+const dmSerif = DM_Serif_Display({
+    weight: '400',
+    subsets: ['latin'],
+    style: ['normal', 'italic'],
+    display: 'swap',
+});
+
 
 // Define the props interface for type safety and reusability
 interface MinimalistHeroProps {
@@ -122,7 +132,7 @@ export const MinimalistHero = ({
     return (
         <div
             className={cn(
-                'relative flex h-screen w-full flex-col items-center justify-between overflow-hidden bg-background p-8 font-sans md:p-12',
+                'relative flex min-h-[100svh] w-full flex-col items-center justify-between overflow-hidden bg-background p-6 font-sans md:p-12',
                 className
             )}
         >
@@ -217,32 +227,32 @@ export const MinimalistHero = ({
             </header>
 
             {/* Main Content Area */}
-            <div className="relative grid w-full max-w-7xl flex-grow grid-cols-1 items-center md:grid-cols-3">
+            <div className="relative my-12 flex w-full max-w-7xl flex-grow flex-col items-center justify-center gap-12 md:my-0 md:grid md:grid-cols-3 md:gap-0 md:py-8">
                 {/* Left Text Content */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.5 }}
-                    className="z-20 order-2 md:order-1 text-center md:text-left"
+                    className="z-20 order-3 flex flex-col items-center text-center md:order-1 md:items-start md:text-left"
                 >
                     <p className="mx-auto max-w-xs text-sm leading-relaxed text-foreground/80 md:mx-0">{mainText}</p>
-                    <a href={readMoreLink} className="mt-4 inline-block text-sm font-medium text-foreground underline decoration-from-font">
+                    <a href={readMoreLink} className="mt-4 inline-block text-sm font-medium text-foreground underline decoration-from-font hover:opacity-80">
                         Read More
                     </a>
                 </motion.div>
 
                 {/* Center Image with Circle */}
-                <div className="relative order-1 md:order-2 flex justify-center items-center h-full">
+                <div className="relative order-2 flex h-64 w-full items-center justify-center md:h-full">
                     <motion.div
                         initial={{ scale: 0.8, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
                         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
-                        className="absolute z-0 h-[300px] w-[300px] rounded-full bg-yellow-400/90 md:h-[400px] md:w-[400px] lg:h-[500px] lg:w-[500px]"
+                        className="absolute z-0 h-[260px] w-[260px] rounded-full bg-yellow-400/90 md:h-[400px] md:w-[400px] lg:h-[450px] lg:w-[450px]"
                     ></motion.div>
                     <motion.img
                         src={imageSrc}
                         alt={imageAlt}
-                        className="relative z-10 h-auto w-56 object-cover md:w-64 scale-150 lg:w-72"
+                        className="relative z-10 h-auto w-48 scale-[1.2] object-cover md:w-64 md:scale-150 lg:w-72"
                         initial={{ opacity: 0, y: 50 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
@@ -254,28 +264,28 @@ export const MinimalistHero = ({
                     />
                 </div>
 
-                {/* Right Text */}
+                {/* Right Text (Heading) */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.6 }}
-                    className="z-20 order-3 flex items-center justify-center text-center md:justify-start"
+                    className="z-20 order-1 flex items-center justify-center text-center md:order-3 md:justify-start md:text-left"
                 >
-                    <h1 className={cn(
-                        "font-extrabold text-foreground tracking-tighter",
-                        (typewriterWords || animatedWords)
-                            ? "text-4xl md:text-5xl lg:text-6xl leading-[1.1]"
-                            : "text-7xl md:text-8xl lg:text-9xl leading-[0.95]"
-                    )}>
+                    <h1
+                        className={cn(
+                            dmSerif.className,
+                            "text-foreground tracking-tight",
+                            (typewriterWords || animatedWords)
+                                ? "text-4xl md:text-5xl lg:text-6xl leading-[1.08]"
+                                : "text-7xl md:text-8xl lg:text-9xl leading-[0.92]"
+                        )}
+                    >
                         {animatedWords ? (
                             <>
                                 {animatedPrefix && (
                                     <span className="inline-block mr-3 mb-2">{animatedPrefix}</span>
                                 )}
-                                <AnimatedTextCycle
-                                    words={animatedWords}
-                                    interval={2500}
-                                />
+                                <AnimatedTextCycle words={animatedWords} interval={2500} />
                             </>
                         ) : typewriterWords ? (
                             <Typewriter

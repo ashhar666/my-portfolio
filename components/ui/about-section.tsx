@@ -1,197 +1,259 @@
 'use client';
 
-import React, { useRef } from 'react';
-import { motion, useScroll, useSpring } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
 import Image from 'next/image';
 import {
     SiPython, SiDjango, SiReact,
     SiBootstrap, SiSqlite, SiNextdotjs, SiTypescript,
-    SiTailwindcss, SiHtml5, SiCss3
+    SiTailwindcss, SiHtml5, SiCss3, SiPostgresql, SiFigma,
 } from 'react-icons/si';
-import {
-    IoLogoGithub, IoLogoJavascript
-} from 'react-icons/io5';
+import { IoLogoGithub, IoLogoJavascript } from 'react-icons/io5';
 import { MagneticButton } from './magnetic-button';
-import { Counter } from './counter';
 import { Marquee } from './marquee';
-import HyperTextParagraph from './hyper-text-with-decryption';
 
-const containerVariants = {
-    hidden: {},
-    visible: { transition: { staggerChildren: 0.12 } }
+/* ─── Data ───────────────────────────────────────────────── */
+
+const skills = [
+    { icon: SiPython,         name: 'Python',      color: '#3776AB' },
+    { icon: SiDjango,         name: 'Django',       color: '#0aad8b' },
+    { icon: SiReact,          name: 'React',        color: '#61DAFB' },
+    { icon: SiNextdotjs,      name: 'Next.js',      color: 'currentColor' },
+    { icon: SiTypescript,     name: 'TypeScript',   color: '#3178C6' },
+    { icon: IoLogoJavascript, name: 'JavaScript',   color: '#F7DF1E' },
+    { icon: SiTailwindcss,    name: 'Tailwind CSS', color: '#06B6D4' },
+    { icon: SiPostgresql,     name: 'PostgreSQL',   color: '#4169E1' },
+    { icon: SiHtml5,          name: 'HTML5',        color: '#E34F26' },
+    { icon: SiCss3,           name: 'CSS3',         color: '#1572B6' },
+    { icon: SiBootstrap,      name: 'Bootstrap',    color: '#7952B3' },
+    { icon: SiSqlite,         name: 'SQLite',       color: '#44a3cc' },
+    { icon: IoLogoGithub,     name: 'GitHub',       color: 'currentColor' },
+    { icon: SiFigma,          name: 'Figma',        color: '#F75248' },
+];
+
+const marqueeSkills = [
+    { icon: IoLogoGithub,    label: 'GitHub',     color: 'currentColor' },
+    { icon: IoLogoJavascript,label: 'JavaScript', color: '#F7DF1E' },
+    { icon: SiPython,        label: 'Python',     color: '#3776AB' },
+    { icon: SiDjango,        label: 'Django',     color: '#0aad8b' },
+    { icon: SiReact,         label: 'React',      color: '#61DAFB' },
+    { icon: SiHtml5,         label: 'HTML5',      color: '#E34F26' },
+    { icon: SiCss3,          label: 'CSS3',       color: '#1572B6' },
+    { icon: SiNextdotjs,     label: 'Next.js',    color: 'currentColor' },
+    { icon: SiBootstrap,     label: 'Bootstrap',  color: '#7952B3' },
+    { icon: SiSqlite,        label: 'SQLite',     color: '#44a3cc' },
+    { icon: SiTailwindcss,   label: 'Tailwind',   color: '#06B6D4' },
+    { icon: SiTypescript,    label: 'TypeScript', color: '#3178C6' },
+];
+
+/* ─── Fade variant ────────────────────────────────────────── */
+
+const rise = {
+    hidden:  { opacity: 0, y: 20 },
+    show: (d: number = 0) => ({
+        opacity: 1, y: 0,
+        transition: { duration: 0.65, delay: d, ease: [0.22, 1, 0.36, 1] as [number,number,number,number] },
+    }),
 };
 
-const lineVariants = {
-    hidden: { opacity: 0, x: -24 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } }
-};
+/* ─── Component ──────────────────────────────────────────── */
 
-const AboutSection = () => {
-    const sectionRef = useRef<HTMLElement>(null);
-    const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start end', 'end end'] });
-    const scaleY = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
+const AboutSection = () => (
+    <section id="about" className="relative bg-background">
 
+        {/* ── Section index bar ── */}
+        <div className="border-b border-foreground/[0.07]">
+            <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 sm:py-4 md:px-12">
+                <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-foreground/25">01</span>
+                <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-foreground/25">About</span>
+            </div>
+        </div>
 
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-12">
 
-    const marqueeSkills = [
-        { icon: IoLogoGithub, label: "GitHub", color: "#ffffff" },
-        { icon: IoLogoJavascript, label: "JavaScript", color: "#F7DF1E" },
-        { icon: SiPython, label: "Python", color: "#3776AB" },
-        { icon: SiDjango, label: "Django", color: "#092E20" },
-        { icon: SiReact, label: "React", color: "#61DAFB" },
-        { icon: SiHtml5, label: "HTML5", color: "#E34F26" },
-        { icon: SiCss3, label: "CSS3", color: "#1572B6" },
-        { icon: SiNextdotjs, label: "Next.js", color: "#ffffff" },
-        { icon: SiBootstrap, label: "Bootstrap", color: "#7952B3" },
-        { icon: SiSqlite, label: "SQLite", color: "#003B57" },
-        { icon: SiTailwindcss, label: "Tailwind", color: "#06B6D4" },
-    ];
+            {/* ══ TOP SECTION: photo left · text right ══ */}
+            <div className="grid gap-0 md:grid-cols-[280px_1fr] lg:grid-cols-[320px_1fr]">
 
-    const bioText = "I don’t just build websites — I craft digital experiences. I’m a Python Full Stack Developer driven by the challenge of turning complex ideas into elegant, high-performance applications. My passion lies in creating systems that are not only visually engaging but also scalable, efficient, and built with purpose. I focus on clean architecture, user-centered design, and solutions that create real impact.";
-
-    const highlightWords = [
-        "experiences.",
-        "Python",
-        "Full",
-        "Stack",
-        "elegant,",
-        "applications.",
-        "scalable,",
-        "efficient,",
-        "purpose.",
-        "architecture,",
-    ];
-
-    return (
-        <section ref={sectionRef} id="about" className="relative min-h-screen bg-background px-6 py-32 md:px-12 md:py-40">
-
-            <div className="mx-auto max-w-4xl">
-                <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="mb-20">
-                    <h2 className="text-sm font-medium uppercase tracking-[0.2em] text-foreground/40">About</h2>
-                </motion.div>
-
-                <div className="grid gap-16 md:grid-cols-[200px_1fr]">
-                    {/* Avatar */}
-                    <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}>
-                        <motion.div className="h-[200px] w-[200px] overflow-hidden rounded-full cursor-pointer" style={{ filter: 'grayscale(100%)' }} whileHover={{ filter: 'grayscale(0%)', scale: 1.05 }} transition={{ duration: 0.5 }}>
-                            <Image src="/profile.webp" alt="ASHHAR SHAHAN" width={200} height={200} className="h-full w-full object-cover" />
+                {/* ── LEFT: photo column ── */}
+                <div className="relative border-b border-foreground/[0.07] pb-10 pt-10 md:border-b-0 md:border-r md:py-20 md:pr-10 lg:py-24">
+                    {/* Photo */}
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.97 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+                        className="relative mx-auto aspect-[3/4] w-full max-w-[220px] overflow-hidden sm:max-w-[260px] md:mx-0 md:max-w-none"
+                    >
+                        <motion.div
+                            className="h-full w-full"
+                            style={{ filter: 'grayscale(1) contrast(1.05)' }}
+                            whileHover={{ filter: 'grayscale(0) contrast(1)' }}
+                            transition={{ duration: 0.55 }}
+                        >
+                            <Image
+                                src="/profile.webp"
+                                alt="Ashhar Shahan"
+                                fill
+                                className="object-cover"
+                                sizes="(max-width: 768px) 260px, 320px"
+                            />
                         </motion.div>
                     </motion.div>
 
-                    {/* Content */}
-                    <div className="space-y-8">
-                        <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-                            <h3 className="mb-2 text-2xl font-semibold text-foreground md:text-3xl">ASHHAR SHAHAN</h3>
-                            <p className="text-base text-foreground/60">Python Full Stack Developer · Kerala, India</p>
-                        </motion.div>
-
-                        {/* Status Badge */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 16 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.6, delay: 0.1 }}
-                        >
-                            <div className="inline-flex items-center gap-2.5 rounded-full border border-foreground/10 bg-foreground/5 px-4 py-1.5 text-sm font-semibold tracking-wide text-foreground/80 uppercase">
-                                <span className="relative flex h-2.5 w-2.5">
-                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
-                                </span>
-                                Working as a Freelancer
-                            </div>
-                        </motion.div>
-
-                        {/* Bio — Decryption Text */}
-                        <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }}>
-                            <HyperTextParagraph
-                                text={bioText}
-                                highlightWords={highlightWords}
-                                className="text-[17px] text-foreground/80 md:text-[19px] mb-8"
-                            />
-                        </motion.div>
-
-                        {/* My Vision Section */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.8, delay: 0.3 }}
-                            className="relative mt-12 overflow-hidden rounded-2xl bg-foreground/[0.03] p-8 md:p-10 border border-foreground/[0.05]"
-                        >
-                            <div className="relative z-10">
-                                <h4 className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-foreground/40">My Vision</h4>
-                                <p className="text-xl font-medium italic text-foreground md:text-2xl leading-tight">
-                                    &ldquo;To build technology that doesn’t just work — but inspires.&rdquo;
-                                </p>
-                            </div>
-                            {/* Decorative accent */}
-                            <div className="absolute -right-4 -top-4 h-24 w-24 rounded-full bg-foreground/[0.02] blur-2xl" />
-                        </motion.div>
-                    </div>
-                </div>
-
-                {/* Skills - Icon Marquee (Contained) */}
-                <div className="overflow-hidden py-12 my-8">
-                    <motion.h4
-                        className="mb-8 text-center text-[10px] font-bold uppercase tracking-[0.4em] text-foreground/30"
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
+                    {/* Identity below photo */}
+                    <motion.div
+                        custom={0.15}
+                        variants={rise}
+                        initial="hidden"
+                        whileInView="show"
                         viewport={{ once: true }}
-                        transition={{ duration: 0.5 }}
+                        className="mt-6 space-y-2 text-center md:text-left"
                     >
-                        Tech Stack
-                    </motion.h4>
+                        <p className="text-sm font-bold tracking-widest text-foreground uppercase">
+                            Ashhar Shahan
+                        </p>
+                        <p className="text-[12px] text-foreground/45 leading-relaxed">
+                            Python Full Stack Developer<br />
+                            Kerala, India
+                        </p>
 
-                    <Marquee.Root speed={30} className="py-2">
-                        {marqueeSkills.map((item, i) => (
-                            <Marquee.Item key={i} className="px-8">
-                                <div className="group relative flex flex-col items-center justify-center gap-3">
-                                    <item.icon
-                                        size="2.2rem"
-                                        aria-label={item.label}
-                                        style={{ color: item.color }}
-                                        className="opacity-80 transition-all duration-500 group-hover:opacity-100 group-hover:scale-110 group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]"
-                                    />
-                                    <span className="text-[9px] opacity-0 transition-opacity duration-300 group-hover:opacity-100 whitespace-nowrap tracking-widest uppercase font-bold text-foreground/30">
-                                        {item.label}
-                                    </span>
-                                </div>
-                            </Marquee.Item>
-                        ))}
-                    </Marquee.Root>
+                        {/* Availability */}
+                        <div className="inline-flex items-center gap-2 pt-1">
+                            <span className="relative flex h-1.5 w-1.5">
+                                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60" />
+                                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                            </span>
+                            <span className="text-[11px] font-medium text-foreground/50">
+                                Available for freelance
+                            </span>
+                        </div>
+                    </motion.div>
                 </div>
 
-                <div className="grid gap-16 md:grid-cols-[200px_1fr]">
-                    <div className="hidden md:block" /> {/* Empty spacer for the grid */}
-                    <div className="space-y-8">
-                        {/* CTA — Magnetic buttons */}
-                        <motion.div className="flex flex-col gap-4 pt-4 sm:flex-row sm:items-center sm:gap-6" initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.4 }}>
-                            <MagneticButton
-                                as="a"
-                                href="#contact"
-                                className="inline-flex items-center gap-2 text-sm font-medium text-foreground transition-colors hover:text-foreground/60"
-                            >
-                                <span>Get in touch</span>
-                                <span>→</span>
-                            </MagneticButton>
+                {/* ── RIGHT: content column ── */}
+                <div className="py-10 md:py-20 md:pl-10 lg:py-24">
 
-                            <MagneticButton
-                                as="a"
-                                href="/resume.pdf"
-                                download="ASHHAR_SHAHAN_Resume.pdf"
-                                className="inline-flex items-center gap-2 rounded-lg bg-foreground/5 px-4 py-2 text-sm font-medium text-foreground transition-all hover:bg-foreground/10"
-                            >
-                                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                                </svg>
-                                <span>Download Resume</span>
-                            </MagneticButton>
-                        </motion.div>
-                    </div>
+                    {/* Large statement */}
+                    <motion.h2
+                        custom={0}
+                        variants={rise}
+                        initial="hidden"
+                        whileInView="show"
+                        viewport={{ once: true }}
+                        className="text-3xl font-black leading-[1.05] tracking-tight text-foreground sm:text-4xl md:text-5xl xl:text-6xl"
+                    >
+                        I build things<br />
+                        <span className="text-foreground/25">people use.</span>
+                    </motion.h2>
+
+                    {/* Bio */}
+                    <motion.div
+                        custom={0.1}
+                        variants={rise}
+                        initial="hidden"
+                        whileInView="show"
+                        viewport={{ once: true }}
+                        className="mt-6 max-w-xl space-y-5 text-[15px] leading-relaxed text-foreground/60 sm:mt-8 sm:space-y-6 md:text-[16px] lg:text-[17px]"
+                    >
+                        <p>
+                            I&apos;m a Python Full Stack Developer driven by the challenge of
+                            turning complex ideas into elegant, high-performance applications.
+                            My passion lies in creating systems that are not only visually
+                            engaging but also scalable, efficient, and built with purpose.
+                        </p>
+                        <p>
+                            With a strong foundation in backend architecture using Django and
+                            Python, combined with modern frontend frameworks like React and
+                            Next.js, I bridge the gap between robust server-side logic and
+                            seamless user experiences. I specialize in designing RESTful APIs,
+                            optimizing database schemas, and writing clean, maintainable code.
+                        </p>
+                        <p>
+                            Whether I&apos;m architecting a new platform from the ground up or
+                            optimizing an existing codebase, my focus remains constant: delivering
+                            user-centered design and technical solutions that create real impact
+                            for businesses and their customers.
+                        </p>
+                    </motion.div>
+
+                    {/* CTAs */}
+                    <motion.div
+                        custom={0.3}
+                        variants={rise}
+                        initial="hidden"
+                        whileInView="show"
+                        viewport={{ once: true }}
+                        className="mt-8 flex flex-wrap items-center gap-3 sm:gap-4"
+                    >
+                        <MagneticButton
+                            as="a"
+                            href="#contact"
+                            className="inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-2.5 text-sm font-semibold text-background transition-opacity hover:opacity-75"
+                        >
+                            Get in touch
+                        </MagneticButton>
+                        <MagneticButton
+                            as="a"
+                            href="/resume.pdf"
+                            download="ASHHAR_SHAHAN_Resume.pdf"
+                            className="inline-flex items-center gap-2 text-sm font-medium text-foreground/50 underline underline-offset-4 decoration-foreground/20 transition-colors hover:text-foreground hover:decoration-foreground/50"
+                        >
+                            Download Resume
+                        </MagneticButton>
+                    </motion.div>
+
+                    {/* ══ VISION QUOTE ══ */}
+                    <motion.div
+                        custom={0.4}
+                        variants={rise}
+                        initial="hidden"
+                        whileInView="show"
+                        viewport={{ once: true }}
+                        className="mt-12 border-l-2 border-foreground/10 pl-5 sm:mt-16 sm:pl-6"
+                    >
+                        <p className="mb-3 text-[10px] font-bold uppercase tracking-[0.3em] text-foreground/30">
+                            My Vision
+                        </p>
+                        <blockquote className="text-lg font-medium italic leading-relaxed text-foreground/80 sm:text-xl md:text-2xl">
+                            &ldquo;To build technology that doesn&apos;t just work — but inspires.&rdquo;
+                        </blockquote>
+                    </motion.div>
                 </div>
             </div>
-        </section>
-    );
-};
+        </div>
+
+        {/* ══ MARQUEE ══ */}
+        <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            className="border-t border-foreground/[0.07] py-8"
+        >
+            <div className="relative overflow-hidden">
+                <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-20 bg-gradient-to-r from-background to-transparent" />
+                <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-20 bg-gradient-to-l from-background to-transparent" />
+                <Marquee.Root speed={28} className="py-3">
+                    {marqueeSkills.map((item, i) => (
+                        <Marquee.Item key={i} className="px-8">
+                            <div className="group flex flex-col items-center gap-2.5">
+                                <item.icon
+                                    size="1.75rem"
+                                    aria-label={item.label}
+                                    style={{ color: item.color }}
+                                    className="opacity-40 transition-all duration-400 group-hover:opacity-80 group-hover:scale-110"
+                                />
+                                <span className="text-[9px] opacity-0 transition-opacity duration-300 group-hover:opacity-60 whitespace-nowrap tracking-widest uppercase font-semibold text-foreground/50">
+                                    {item.label}
+                                </span>
+                            </div>
+                        </Marquee.Item>
+                    ))}
+                </Marquee.Root>
+            </div>
+        </motion.div>
+
+    </section>
+);
 
 export default AboutSection;

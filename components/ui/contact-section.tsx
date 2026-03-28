@@ -106,9 +106,9 @@ const ContactSection = () => {
                     transition={{ duration: 0.6 }}
                     className="mb-20"
                 >
-                    <h2 className="text-sm font-medium uppercase tracking-[0.2em] text-foreground/40">
+                    <span className="text-sm font-medium uppercase tracking-[0.2em] text-foreground/40">{/* SEO FIX: demoted from h2 to span */}
                         Contact
-                    </h2>
+                    </span>
                 </motion.div>
 
                 <div className="grid gap-12 lg:grid-cols-5">
@@ -120,9 +120,9 @@ const ContactSection = () => {
                         transition={{ duration: 0.8 }}
                         className="lg:col-span-2"
                     >
-                        <h3 className="mb-4 text-2xl font-semibold text-foreground md:text-3xl">
+                        <h2 className="mb-4 text-2xl font-semibold text-foreground md:text-3xl">{/* SEO FIX: promoted from h3 to h2 */}
                             Let&apos;s Connect
-                        </h3>
+                        </h2>
                         <p className="mb-8 text-sm leading-relaxed text-foreground/60">
                             Have a project in mind or just want to chat? Feel free to reach out.
                             I&apos;m currently looking for new opportunities. Whether you have a question or just want to say hi, I&apos;ll try my best to get back to you!
