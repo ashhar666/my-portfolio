@@ -15,44 +15,44 @@ import { Marquee } from './marquee';
 /* ─── Data ───────────────────────────────────────────────── */
 
 const skills = [
-    { icon: SiPython,         name: 'Python',      color: '#3776AB' },
-    { icon: SiDjango,         name: 'Django',       color: '#0aad8b' },
-    { icon: SiReact,          name: 'React',        color: '#61DAFB' },
-    { icon: SiNextdotjs,      name: 'Next.js',      color: 'currentColor' },
-    { icon: SiTypescript,     name: 'TypeScript',   color: '#3178C6' },
-    { icon: IoLogoJavascript, name: 'JavaScript',   color: '#F7DF1E' },
-    { icon: SiTailwindcss,    name: 'Tailwind CSS', color: '#06B6D4' },
-    { icon: SiPostgresql,     name: 'PostgreSQL',   color: '#4169E1' },
-    { icon: SiHtml5,          name: 'HTML5',        color: '#E34F26' },
-    { icon: SiCss3,           name: 'CSS3',         color: '#1572B6' },
-    { icon: SiBootstrap,      name: 'Bootstrap',    color: '#7952B3' },
-    { icon: SiSqlite,         name: 'SQLite',       color: '#44a3cc' },
-    { icon: IoLogoGithub,     name: 'GitHub',       color: 'currentColor' },
-    { icon: SiFigma,          name: 'Figma',        color: '#F75248' },
+    { icon: SiPython, name: 'Python', color: '#3776AB' },
+    { icon: SiDjango, name: 'Django', color: '#0aad8b' },
+    { icon: SiReact, name: 'React', color: '#61DAFB' },
+    { icon: SiNextdotjs, name: 'Next.js', color: 'currentColor' },
+    { icon: SiTypescript, name: 'TypeScript', color: '#3178C6' },
+    { icon: IoLogoJavascript, name: 'JavaScript', color: '#F7DF1E' },
+    { icon: SiTailwindcss, name: 'Tailwind CSS', color: '#06B6D4' },
+    { icon: SiPostgresql, name: 'PostgreSQL', color: '#4169E1' },
+    { icon: SiHtml5, name: 'HTML5', color: '#E34F26' },
+    { icon: SiCss3, name: 'CSS3', color: '#1572B6' },
+    { icon: SiBootstrap, name: 'Bootstrap', color: '#7952B3' },
+    { icon: SiSqlite, name: 'SQLite', color: '#44a3cc' },
+    { icon: IoLogoGithub, name: 'GitHub', color: 'currentColor' },
+    { icon: SiFigma, name: 'Figma', color: '#F75248' },
 ];
 
 const marqueeSkills = [
-    { icon: IoLogoGithub,    label: 'GitHub',     color: 'currentColor' },
-    { icon: IoLogoJavascript,label: 'JavaScript', color: '#F7DF1E' },
-    { icon: SiPython,        label: 'Python',     color: '#3776AB' },
-    { icon: SiDjango,        label: 'Django',     color: '#0aad8b' },
-    { icon: SiReact,         label: 'React',      color: '#61DAFB' },
-    { icon: SiHtml5,         label: 'HTML5',      color: '#E34F26' },
-    { icon: SiCss3,          label: 'CSS3',       color: '#1572B6' },
-    { icon: SiNextdotjs,     label: 'Next.js',    color: 'currentColor' },
-    { icon: SiBootstrap,     label: 'Bootstrap',  color: '#7952B3' },
-    { icon: SiSqlite,        label: 'SQLite',     color: '#44a3cc' },
-    { icon: SiTailwindcss,   label: 'Tailwind',   color: '#06B6D4' },
-    { icon: SiTypescript,    label: 'TypeScript', color: '#3178C6' },
+    { icon: IoLogoGithub, label: 'GitHub', color: 'currentColor' },
+    { icon: IoLogoJavascript, label: 'JavaScript', color: '#F7DF1E' },
+    { icon: SiPython, label: 'Python', color: '#3776AB' },
+    { icon: SiDjango, label: 'Django', color: '#0aad8b' },
+    { icon: SiReact, label: 'React', color: '#61DAFB' },
+    { icon: SiHtml5, label: 'HTML5', color: '#E34F26' },
+    { icon: SiCss3, label: 'CSS3', color: '#1572B6' },
+    { icon: SiNextdotjs, label: 'Next.js', color: 'currentColor' },
+    { icon: SiBootstrap, label: 'Bootstrap', color: '#7952B3' },
+    { icon: SiSqlite, label: 'SQLite', color: '#44a3cc' },
+    { icon: SiTailwindcss, label: 'Tailwind', color: '#06B6D4' },
+    { icon: SiTypescript, label: 'TypeScript', color: '#3178C6' },
 ];
 
 /* ─── Fade variant ────────────────────────────────────────── */
 
 const rise = {
-    hidden:  { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 20 },
     show: (d: number = 0) => ({
         opacity: 1, y: 0,
-        transition: { duration: 0.65, delay: d, ease: [0.22, 1, 0.36, 1] as [number,number,number,number] },
+        transition: { duration: 0.65, delay: d, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] },
     }),
 };
 
