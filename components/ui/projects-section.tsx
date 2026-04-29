@@ -39,7 +39,7 @@ const projects = [
         title: 'Keralam',
         description: 'A comprehensive travel and tourism guide exploring the magic of Kerala. Features interactive destination showcases, cultural insights, UNESCO heritage details, and a dynamic gallery capturing the essence of God\'s Own Country.',
         tech: ['Next.js', 'React', 'Tailwind CSS', 'Framer Motion'],
-        image: '/projects/keralam.png',
+        image: '/projects/Screenshot 2026-03-22 142838.png',
         liveUrl: 'https://kerala-sepia.vercel.app/',
         githubUrl: 'https://github.com/ashhar666/kerala.git',
     },
