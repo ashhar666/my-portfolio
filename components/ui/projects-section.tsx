@@ -39,9 +39,17 @@ const projects = [
         title: 'Keralam',
         description: 'A comprehensive travel and tourism guide exploring the magic of Kerala. Features interactive destination showcases, cultural insights, UNESCO heritage details, and a dynamic gallery capturing the essence of God\'s Own Country.',
         tech: ['Next.js', 'React', 'Tailwind CSS', 'Framer Motion'],
-        image: '/projects/Screenshot 2026-03-22 142838.png',
+        image: '/projects/keralam.png',
         liveUrl: 'https://kerala-sepia.vercel.app/',
         githubUrl: 'https://github.com/ashhar666/kerala.git',
+    },
+    {
+        title: 'PocketFlow',
+        description: 'Built PocketFlow, a comprehensive finance tracker that leverages Google Gemini AI to automate receipt data entry. I architected a multi-platform system using Django and PostgreSQL, deployed across Hugging Face and Vercel, allowing users to manage expenses via a web dashboard or an interactive Telegram Bot. Focused on high availability, AI resilience, and secure real-time data synchronization.',
+        tech: ['Python', 'Django REST Framework', 'PostgreSQL', 'Google Gemini', 'Docker', 'Hugging Face', 'Vercel', 'Telegram API'],
+        image: '/projects/pocketflow.png',
+        liveUrl: 'https://huggingface.co/spaces/ashharshahan/pocketflow',
+        githubUrl: 'https://github.com/ashhar666/pocketflow',
     }
 ];
 
