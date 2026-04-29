@@ -48,7 +48,7 @@ const projects = [
         description: 'Built PocketFlow, a comprehensive finance tracker that leverages Google Gemini AI to automate receipt data entry. I architected a multi-platform system using Django and PostgreSQL, deployed across Hugging Face and Vercel, allowing users to manage expenses via a web dashboard or an interactive Telegram Bot. Focused on high availability, AI resilience, and secure real-time data synchronization.',
         tech: ['Python', 'Django REST Framework', 'PostgreSQL', 'Google Gemini', 'Docker', 'Hugging Face', 'Vercel', 'Telegram API'],
         image: '/projects/pocketflow.png',
-        liveUrl: 'https://huggingface.co/spaces/ashharshahan/pocketflow',
+        liveUrl: 'https://pocketflow-chi.vercel.app/',
         githubUrl: 'https://github.com/ashhar666/pocketflow',
     }
 ];
