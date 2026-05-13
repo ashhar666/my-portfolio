@@ -202,8 +202,8 @@ const AboutSection = () => (
                         </MagneticButton>
                         <MagneticButton
                             as="a"
-                            href="/resume.pdf"
-                            download="ASHHAR_SHAHAN_Resume.pdf"
+                            href="/Ashhar_Shahan_Resume.pdf"
+                            download="Ashhar_Shahan_Resume.pdf"
                             className="inline-flex items-center gap-2 text-sm font-medium text-foreground/50 underline underline-offset-4 decoration-foreground/20 transition-colors hover:text-foreground hover:decoration-foreground/50"
                         >
                             Download Resume
